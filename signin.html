@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chuks Kitchen – Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Island+Moments&family=Jost:wght@300;400;500&family=Poppins:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #ff7a1a;
+      --blue: #2b7de9;
+      --brown: #6a442b;
+      --light: #f6f6f6;
+      --text: #333;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #fff;
+      color: var(--text);
+      font-family: "Inter", sans-serif;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 85vh;
+    }
+
+    /* ── LEFT: Hero image with orange overlay ── */
+    .hero-img {
+      position: relative;
+      background: url("/images/image11.png") center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-img::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 120, 20, 0.65);
+    }
+    .hero-overlay-text {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      text-align: center;
+      padding: 40px;
+    }
+    .hero-overlay-text h2 {
+      font-family: "Inter", sans-serif;
+      font-size: 32px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+    .hero-overlay-text p {
+      font-family: "Inter", sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.7;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    /* ── RIGHT: Login form ── */
+    .hero-content {
+      background: #fafafa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 80px;
+      gap: 0;
+    }
+    .login-box {
+      width: 100%;
+      max-width: 380px;
+    }
+    .brand-script {
+      font-family: "Island Moments", cursive;
+      font-size: 38px;
+      color: var(--orange);
+      text-align: center;
+      margin-bottom: 4px;
+    }
+    .login-title {
+      font-family: "Jost", sans-serif;
+      font-size: 22px;
+      font-weight: 500;
+      text-align: center;
+      color: #222;
+      margin-bottom: 28px;
+    }
+
+    /* form fields */
+    .field-label {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    .input-wrap {
+      position: relative;
+      margin-bottom: 18px;
+    }
+    .input-wrap .icon-left {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #aaa;
+      font-size: 16px;
+    }
+    .input-wrap input {
+      width: 100%;
+      padding: 12px 40px 12px 38px;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: "Inter", sans-serif;
+      background: #fff;
+      outline: none;
+      transition: border-color 0.2s;
+      color: #333;
+    }
+    .input-wrap input:focus { border-color: var(--orange); }
+    .input-wrap .toggle-pw {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #aaa;
+      font-size: 16px;
+      user-select: none;
+    }
+
+    .forgot {
+      text-align: right;
+      margin-top: -10px;
+      margin-bottom: 22px;
+    }
+    .forgot a {
+      font-size: 13px;
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    .btn-continue {
+      width: 100%;
+      padding: 14px;
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: "Inter", sans-serif;
+      transition: background 0.2s;
+    }
+    .btn-continue:hover { background: #e66e10; }
+
+    .or-divider {
+      text-align: center;
+      margin: 18px 0 14px;
+      font-size: 13px;
+      color: #999;
+    }
+
+    .btn-social {
+      width: 100%;
+      padding: 12px;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      background: #fff;
+      font-size: 14px;
+      font-family: "Inter", sans-serif;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      color: #333;
+      font-weight: 500;
+      transition: border-color 0.2s;
+    }
+    .btn-social:hover { border-color: #aaa; }
+    .btn-social img { width: 18px; height: 18px; }
+
+    .create-account {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 13px;
+      color: #777;
+    }
+    .create-account a {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--brown);
+      color: #fff;
+      padding: 50px 70px 20px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 30px;
+    }
+    .brand-footer {
+      font-family: "Island Moments", cursive;
+      font-size: 36px;
+      color: #ffa866;
+      margin-bottom: 10px;
+    }
+    .brand-text {
+      font-family: "Jost", sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 1.6;
+      max-width: 160px;
+      color: #eee;
+    }
+    .footer-title {
+      font-family: "Jost", sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+    .quick-links a,
+    .contact-us p,
+    .social a {
+      font-family: "Poppins", sans-serif;
+      font-weight: 200;
+      color: #eee;
+      font-size: 13px;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .copyright {
+      font-family: "Poppins", sans-serif;
+      font-weight: 200;
+      font-size: 12px;
+      color: #ccc;
+      /* border-top: 1px solid rgba(255,255,255,0.15); */
+      padding-top: 16px;
+    }
+
+    /* ── SCROLL TOP ── */
+    .scroll-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--blue);
+      color: #fff;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      text-decoration: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .container { grid-template-columns: 1fr; }
+      .hero-img { height: 300px; }
+      .hero-content { padding: 40px 30px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 500px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      footer { padding: 40px 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="container">
+    <!-- LEFT: image + overlay -->
+    <div class="hero-img">
+      <div class="hero-overlay-text">
+        <h2>Chuks Kitchen</h2>
+        <p>Your journey to delicious, authentic Nigerian meals starts here. Sign up or log in to order your favorites today!</p>
+      </div>
+    </div>
+
+    <!-- RIGHT: login form -->
+    <div class="hero-content">
+      <div class="login-box">
+        <div class="brand-script">Chuks Kitchen</div>
+        <div class="login-title">Login your Account</div>
+
+        <div class="field-label">Email or phone number</div>
+        <div class="input-wrap">
+          <span class="icon-left">✉️</span>
+          <input type="email" id="email" placeholder="name@gmail.com" />
+        </div>
+
+        <div class="field-label">Password</div>
+        <div class="input-wrap">
+          <span class="icon-left">🔒</span>
+          <input type="password" id="password" value="••••••" />
+          <span class="toggle-pw" onclick="togglePassword()">👁</span>
+        </div>
+
+        <div class="forgot"><a href="#">Forgot Password?</a></div>
+
+        <button class="btn-continue" onclick="handleLogin()">Continue</button>
+
+        <div class="or-divider">Or continue with</div>
+
+        <button class="btn-social">
+          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" />
+          Continue with Google
+        </button>
+        <button class="btn-social">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/240px-Facebook_Logo_%282019%29.png" alt="Facebook" />
+          Continue with Apple
+        </button>
+
+        <div class="create-account">
+          Don't have an account? <a href="#">Create an account</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="brand-footer">Chuks Kitchen</div>
+        <p class="brand-text">Bringing the authentic flavors of Nigerian home cooking to your table, with passion and care.</p>
+      </div>
+      <div class="quick-links">
+        <div class="footer-title">Quick Links</div>
+        <a href="#">Home</a>
+        <a href="#">Explore</a>
+        <a href="#">My Order</a>
+        <a href="#">Account</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="contact-us">
+        <div class="footer-title">Contact Us</div>
+        <p>+234 801 234 5678</p>
+        <p>hello@chukskitchen.com</p>
+        <p>123 Taste Blvd, Lagos, Nigeria</p>
+      </div>
+      <div class="social">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+    <div class="copyright">© 2020 Lift Media. All rights reserved.</div>
+  </footer>
+
+  <a class="scroll-top" onclick="scrollToTop()">↑</a>
+
+  <script>
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function togglePassword() {
+      const pw = document.getElementById("password");
+      pw.type = pw.type === "password" ? "text" : "password";
+    }
+
+    function handleLogin() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      if (!email || !password) {
+        alert("Please fill in all fields.");
+        return;
+      }
+      alert("Logging in as " + email + "...");
+    }
+  </script>
+</body>
+</html>

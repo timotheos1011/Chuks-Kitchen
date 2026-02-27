@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chuks Kitchen – Jollof Rice with Fried Chicken</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Island+Moments&family=Jost:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --orange: #ff7a1a;
+        --blue: #2b7de9;
+        --brown: #6a442b;
+        --light: #f6f6f6;
+        --text: #333;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #f0f0f0;
+        color: var(--text);
+        font-family: "Inter", sans-serif;
+      }
+
+      /* ── NAVBAR ── */
+      nav {
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 50px;
+        border-bottom: 1px solid #eee;
+      }
+      .nav-brand {
+        font-family: "Island Moments", cursive;
+        font-size: 32px;
+        color: var(--orange);
+        text-decoration: none;
+      }
+      .nav-links {
+        display: flex;
+        gap: 40px;
+        list-style: none;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: #444;
+        font-size: 14px;
+        font-weight: 500;
+        font-family: "Jost", sans-serif;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--orange);
+      }
+      .btn-login {
+        background: var(--orange);
+        color: #fff;
+        border: none;
+        padding: 10px 28px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: "Inter", sans-serif;
+        transition: background 0.2s;
+      }
+      .btn-login:hover {
+        background: #e66e10;
+      }
+
+      /* ── PAGE WRAPPER ── */
+      .page-wrapper {
+        max-width: 100%;
+        /* margin: 30px auto; */
+        /* padding: 0 20px 40px; */
+      }
+
+      /* ── CARD ── */
+      .card {
+        background: #f0f0f0;
+        /* border-radius: 12px; */
+        /* border: 2px solid var(--blue); */
+        overflow: hidden;
+        /* display: grid; */
+        /* grid-template-columns: 420px 1fr; */
+        /* min-height: 600px; */
+        position: relative;
+
+        display: grid;
+        grid-template-columns: 0.8fr 1fr;
+        min-height: 85vh;
+      }
+
+      /* ── LEFT: food image ── */
+       .food-img { 
+        background: url("/images/image10.png") top center/cover no-repeat;
+        /* min-height: 580px; */
+         background-size: 200%;
+          width: 100%;
+        height: 100%; 
+      } 
+
+   
+       
+
+      /* ── RIGHT: details panel ── */
+      .detail-panel {
+        padding: 50px 48px;
+        margin: 20px 50px;
+        overflow-y: auto;
+        position: relative;
+         background: #fff;
+      }
+
+      /* close button */
+      .close-btn {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        width: 28px;
+        height: 28px;
+        background: #222;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+      }
+
+       a {
+        text-decoration: none;
+      } 
+
+      .food-name {
+        font-size: 24px;
+        font-weight: 700;
+        color: #222;
+        margin-bottom: 6px;
+        padding-right: 40px;
+        
+      }
+      .food-price {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--orange);
+        margin-bottom: 14px;
+      }
+      .food-desc {
+        font-size: 13px;
+        color: #666;
+        line-height: 1.65;
+        margin-bottom: 16px;
+      }
+
+      /* tags */
+      .tags {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+      }
+      .tag {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 12px;
+        color: #555;
+      }
+      .tag .dot {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 2px solid var(--orange);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .tag .dot::after {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background: var(--orange);
+        border-radius: 50%;
+      }
+      .tag-link {
+        font-size: 12px;
+        color: var(--blue);
+        text-decoration: none;
+      }
+      .tag-link:hover {
+        text-decoration: underline;
+      }
+
+      /* section title */
+      .section-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: #222;
+        margin-bottom: 14px;
+      }
+
+      /* radio options */
+      .options-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 24px;
+      }
+      .option-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1.5px solid #ddd;
+        border-radius: 8px;
+        padding: 11px 14px;
+        cursor: pointer;
+        transition: border-color 0.2s;
+      }
+      .option-row:hover {
+        border-color: var(--orange);
+      }
+      .option-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .option-left label {
+        font-size: 14px;
+        color: #333;
+        cursor: pointer;
+      }
+      .option-price {
+        font-size: 13px;
+        color: #777;
+      }
+
+      /* custom radio */
+      input[type="radio"] {
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        border: 2px solid var(--orange);
+        border-radius: 50%;
+        cursor: pointer;
+        position: relative;
+        flex-shrink: 0;
+        transition: background 0.15s;
+      }
+      input[type="radio"]:checked::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 8px;
+        height: 8px;
+        background: var(--orange);
+        border-radius: 50%;
+      }
+
+      /* custom checkbox */
+      input[type="checkbox"] {
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        cursor: pointer;
+        position: relative;
+        flex-shrink: 0;
+        transition: border-color 0.15s, background 0.15s;
+      }
+      input[type="checkbox"]:checked {
+        background: var(--orange);
+        border-color: var(--orange);
+      }
+      input[type="checkbox"]:checked::after {
+        content: "✓";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      /* special instructions */
+      .instructions-textarea {
+        width: 100%;
+        border: 1.5px solid #ddd;
+        border-radius: 8px;
+        padding: 12px;
+        font-size: 13px;
+        font-family: "Inter", sans-serif;
+        color: #999;
+        resize: none;
+        height: 80px;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .instructions-textarea:focus {
+        border-color: var(--orange);
+        color: #333;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: var(--brown);
+        color: #fff;
+        padding: 50px 70px 20px;
+        margin-top: 10px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 30px;
+      }
+      .brand-footer {
+        font-family: "Island Moments", cursive;
+        font-size: 36px;
+        color: #ffa866;
+        margin-bottom: 10px;
+      }
+      .brand-text {
+        font-family: "Jost", sans-serif;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 1.6;
+        max-width: 160px;
+        color: #eee;
+      }
+      .footer-title {
+        font-family: "Jost", sans-serif;
+        font-weight: 400;
+        font-size: 15px;
+        margin-bottom: 16px;
+        color: #fff;
+      }
+      .quick-links a,
+      .contact-us p,
+      .social-links a {
+        font-family: "Poppins", sans-serif;
+        font-weight: 200;
+        color: #eee;
+        font-size: 13px;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 10px;
+      }
+      .copyright {
+        font-family: "Poppins", sans-serif;
+        font-weight: 200;
+        font-size: 12px;
+        color: #ccc;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        padding-top: 16px;
+      }
+
+      /* ── SCROLL TOP ── */
+      .scroll-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: var(--blue);
+        color: #fff;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 18px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+        border: none;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 860px) {
+        .card {
+          grid-template-columns: 1fr;
+        }
+        .food-img {
+          min-height: 280px;
+        }
+        nav {
+          padding: 14px 20px;
+        }
+        .nav-links {
+          gap: 20px;
+        }
+      }
+      @media (max-width: 600px) {
+        .nav-links {
+          display: none;
+        }
+        footer {
+          padding: 40px 24px 20px;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav>
+      <a href="#" class="nav-brand">Chuks Kitchen</a>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Explore</a></li>
+        <li><a href="#">My Orders</a></li>
+        <li><a href="#">Account</a></li>
+      </ul>
+      <button class="btn-login">Login</button>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="page-wrapper">
+      <div class="card">
+        <!-- LEFT: food photo -->
+        <div class="food-img"></div>
+       
+        <!-- RIGHT: detail panel -->
+        <div class="detail-panel">
+          <button class="close-btn" onclick="history.back()">✕</button>
+
+          <a href="yourcart.html"><h1 class="food-name">Jollof Rice with Fried Chicken</h1></a>
+          <div class="food-price">₦2,800</div>
+          <p class="food-desc">
+            Our signature Jollof rice, cooked to perfection with aromatic
+            spices, served with juicy, golden-fried chicken. A classic Nigerian
+            comfort food, rich in flavor and satisfying. Perfect for a quick
+            lunch or a hearty dinner.
+          </p>
+
+          <!-- Tags -->
+          <div class="tags">
+            <div class="tag">
+              <div class="dot"></div>
+              Mildly spicy
+            </div>
+            <div class="tag">
+              <div class="dot"></div>
+              Vegetarian option available
+            </div>
+            <div class="dot" style="border-color: var(--orange)"></div>
+            <a href="#" class="tag-link">View Allergies</a>
+          </div>
+
+          <!-- Choose Protein -->
+          <div class="section-title">Choose Your Protein</div>
+          <div class="options-group" id="proteinGroup">
+            <label class="option-row">
+              <div class="option-left">
+                <input type="radio" name="protein" value="chicken" checked />
+                <span>Fried Chicken</span>
+              </div>
+              <span class="option-price">(Default)</span>
+            </label>
+            <label class="option-row">
+              <div class="option-left">
+                <input type="radio" name="protein" value="fish" />
+                <span>Grilled Fish</span>
+              </div>
+              <span class="option-price">+₦500</span>
+            </label>
+            <label class="option-row">
+              <div class="option-left">
+                <input type="radio" name="protein" value="beef" />
+                <span>Beef</span>
+              </div>
+              <span class="option-price">+₦700</span>
+            </label>
+          </div>
+
+          <!-- Extra Sides -->
+          <div class="section-title">Extra Sides (Optional)</div>
+          <div class="options-group">
+            <label class="option-row">
+              <div class="option-left">
+                <input type="checkbox" name="sides" value="plantain" />
+                <span>Fried Plantain</span>
+              </div>
+              <span class="option-price">+₦700</span>
+            </label>
+            <label class="option-row">
+              <div class="option-left">
+                <input type="checkbox" name="sides" value="coleslaw" />
+                <span>Coleslaw</span>
+              </div>
+              <span class="option-price">+₦500</span>
+            </label>
+            <label class="option-row">
+              <div class="option-left">
+                <input type="checkbox" name="sides" value="pepper" />
+                <span>Extra Pepper Sauce</span>
+              </div>
+              <span class="option-price">+₦300</span>
+            </label>
+          </div>
+
+          <!-- Special Instructions -->
+          <div class="section-title">Special Instructions</div>
+          <textarea
+            class="instructions-textarea"
+            placeholder="E.g no onion, food is too spicy, food is too hot hhhhhhhhhh&#10;food is tasty"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <div class="brand-footer">Chuks Kitchen</div>
+          <p class="brand-text">
+            Bringing the authentic flavors of Nigerian home cooking to your
+            table, with passion and care.
+          </p>
+        </div>
+        <div class="quick-links">
+          <div class="footer-title">Quick Links</div>
+          <a href="#">Home</a>
+          <a href="#">Explore</a>
+          <a href="#">My Order</a>
+          <a href="#">Account</a>
+          <a href="#">Contact</a>
+        </div>
+        <div class="contact-us">
+          <div class="footer-title">Contact Us</div>
+          <p>+234 801 234 5678</p>
+          <p>hello@chukskitchen.com</p>
+          <p>123 Taste Blvd, Lagos, Nigeria</p>
+        </div>
+        <div class="social-links">
+          <a href="#">Facebook</a>
+          <a href="#">Twitter</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Instagram</a>
+        </div>
+      </div>
+      <div class="copyright">© 2020 Lift Media. All rights reserved.</div>
+    </footer>
+
+    <button class="scroll-top" onclick="scrollToTop()">↑</button>
+
+    <script>
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      // Highlight selected option row
+      document.querySelectorAll('input[type="radio"]').forEach((radio) => {
+        radio.addEventListener("change", () => {
+          document
+            .querySelectorAll("#proteinGroup .option-row")
+            .forEach((row) => {
+              row.style.borderColor = "#ddd";
+            });
+          radio.closest(".option-row").style.borderColor = "var(--orange)";
+        });
+      });
+
+      // Init: highlight default selected
+      document
+        .querySelector('input[type="radio"]:checked')
+        ?.closest(".option-row")
+        ?.style.setProperty("border-color", "var(--orange)");
+    </script>
+  </body>
+</html>
