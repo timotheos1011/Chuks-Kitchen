@@ -4,7 +4,7 @@
 
 ## Project Overview
 
-I built a multi-page responsive food ordering prototype for **Chuks Kitchen** (client: Mr. Chukwudi Okorie / Mr. Chuks), converting key screens from the provided Figma design into functional webpages.  
+I built a multi-page responsive food ordering prototype for **Chuks Kitchen** (client: Mr. Chukwudi Okorie / Mr. Chuks), converting key screens from the provided Figma design into webpages.  
 
 📝📝📝📝📝
 - **Navigation flow** (implemented via anchor tags):  
