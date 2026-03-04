@@ -15,6 +15,7 @@
 
 
 <style>
+
   :root {
   --orange: #ff7a1a;
   --blue: #2b7de9;
@@ -32,6 +33,38 @@ body {
   color: var(--text);
   font-family: "Inter", sans-serif;
 }
+
+.popup {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border: 2px solid #ff6600;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: none; /* hidden by default */
+}
+
+.popup button {
+  margin: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#copyBtn {
+  background-color: #ff6600;
+  color: #fff;
+}
+
+#closeBtn {
+  background-color: #ccc;
+}
+
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -293,7 +326,8 @@ a {
         <a href="#" class="btn secondary">Learn More About Us</a>
 </div>
 
-        
+        <!-- Popup container --> 
+         <div id="popup" class="popup"> <p>https://github.com/timotheos1011/Chuks-Kitchen</p> <button id="copyBtn">Copy Repo Link</button> <button id="closeBtn">Close</button> </div>
         <div class="privacy">
             <p class="ptivacy-copyright"> © 2024 Chuks Kitchen.</p>
             <p class="policy"> Privacy Policy</p>
@@ -341,6 +375,33 @@ a {
     <div class="scroll-top" onclick="scrollToTop()">↑</div>
 
     <script>
+
+window.onload = function() {
+  
+  if (!sessionStorage.getItem("popupShown")) {
+    document.getElementById("popup").style.display = "block";
+    
+    sessionStorage.setItem("popupShown", "true");
+  }
+};
+
+
+document.getElementById("copyBtn").addEventListener("click", function() {
+  const message = "https://github.com/timotheos1011/Chuks-Kitchen";
+  navigator.clipboard.writeText(message).then(() => {
+    const btn = document.getElementById("copyBtn");
+    btn.textContent = "Copied!";
+    btn.style.backgroundColor = "green";
+    btn.style.color = "white";
+  });
+});
+
+// Close popup
+document.getElementById("closeBtn").addEventListener("click", function() {
+  document.getElementById("popup").style.display = "none";
+});
+
+
       function scrollToTop() {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
