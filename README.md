@@ -3,6 +3,8 @@
 **Popoola Timothy – Frontend Developer**  
 
 ## Project Overview
+The Live Project Link -- https://timotheos1011.github.io/Chuks-Kitchen/
+The Repo Link -- https://github.com/timotheos1011/Chuks-Kitchen
 
 I built a multi-page responsive food ordering prototype for **Chuks Kitchen** (client: Mr. Chukwudi Okorie / Mr. Chuks), converting key screens from the provided Figma design into webpages.  
 
